@@ -44,6 +44,7 @@ verticalFontSpacing = (baseHeight - fontSize)/2;
 
 completeBase();
 logo();
+logoAdevinta();
 leftText(username);
 rightText(year);
 //referenceStl(); // uncomment to show the original STL
@@ -137,6 +138,24 @@ module logo() {
                         scale([.194, .194, 1]) {
                             // Path is relative to .scad file, not where it is called from on the command line
                             import("../src/octocat_logo.svg");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+module logoAdevinta() {
+    translate([baseWidth/2-10.9, +baseDepth/2, 0]) {
+        rotate([baseAngle, 0, 180]) {
+            // shift up along the sloped face, and sink into the base so the mesh is calculated properly
+            translate([0, 1.1, -pad]) {
+                color("green") {
+                    linear_extrude(logoExtrude+pad) {
+                        scale([.194, .194, 1]) {
+                            // Path is relative to .scad file, not where it is called from on the command line
+                            import("../src/adevinta_logo.svg");
                         }
                     }
                 }
